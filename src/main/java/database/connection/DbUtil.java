@@ -2,7 +2,6 @@ package database.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DbUtil {
@@ -11,7 +10,8 @@ public class DbUtil {
     private static final String DB_PASS = "root2612";
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+       Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+       return conn;
     }
 
 }
