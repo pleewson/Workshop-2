@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45c2d965-b2eb-44ae-a503-d5e2a4435982" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/62cc91c9-3368-406f-ae77-89cedad8cdaa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/62cc91c9-3368-406f-ae77-89cedad8cdaa.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/665a6224-30a3-463d-8d15-d2d963c601a4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/665a6224-30a3-463d-8d15-d2d963c601a4/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/665a6224-30a3-463d-8d15-d2d963c601a4/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/665a6224-30a3-463d-8d15-d2d963c601a4/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/connection/DbUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/connection/DbUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/TaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/connection/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/connection/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/connection/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +56,7 @@
     ]
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.test">
     <configuration name="TaskManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="entity.TaskManager" />
       <module name="Workshop-2" />
@@ -78,8 +70,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="entity.test" />
+      <module name="Workshop-2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.test" />
         <item itemvalue="Application.TaskManager" />
       </list>
     </recent_temporary>
@@ -94,7 +100,9 @@
       <updated>1705757626728</updated>
       <workItem from="1705757627730" duration="9956000" />
       <workItem from="1705775523231" duration="51000" />
-      <workItem from="1705861536972" duration="3468000" />
+      <workItem from="1705861536972" duration="3631000" />
+      <workItem from="1705935221045" duration="172000" />
+      <workItem from="1705945189585" duration="2913000" />
     </task>
     <servers />
   </component>
