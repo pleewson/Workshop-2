@@ -36,10 +36,37 @@ public class UserDAO {
     }
 
 
-//    public static void printAllUsers() {
-//        final String SELECT_USERS_QUERY = "SELECT * FROM users;";
-//
-//    }
+    public User read(int userId) {
+        final String SELECT_USER_BY_ID_QUERY = "SELECT * FROM users WHERE id = " + userId;
+
+        try (Connection conn = DbUtil.getConnection();
+             PreparedStatement preStmt = conn.prepareStatement(SELECT_USER_BY_ID_QUERY)) {
+
+            User userToRead = new User();
+            ResultSet resultSet = preStmt.executeQuery();
+
+            if (resultSet.next()) {
+                userToRead.setId(resultSet.getInt("id"));
+                userToRead.setEmail(resultSet.getString("email"));
+                userToRead.setUserName(resultSet.getString("username"));
+                userToRead.setPassword(resultSet.getString("password"));
+
+                System.out.println("Loading data -possitive");
+                return userToRead;
+            } else {
+                System.out.println("No user found with ID " + userId);
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Problem with loading data");
+            return null;
+        }
+
+    }
+
+    public void delete(int userId){
+
+    }
 
 
 }
