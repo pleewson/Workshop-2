@@ -1,6 +1,8 @@
 package database.connection;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import entity.User;
 import org.mindrot.jbcrypt.BCrypt;
@@ -25,7 +27,7 @@ public class UserDAO {
             if (rs.next()) {
                 user.setId(rs.getInt(1));
             }
-            System.out.println("New User have been created!");
+            System.out.println("New User has been created!");
             return user;
         } catch (SQLException ex) {
             System.out.println("Problems with creating new User.");
@@ -39,8 +41,7 @@ public class UserDAO {
     public User read(int userId) {
         final String SELECT_USER_BY_ID_QUERY = "SELECT * FROM users WHERE id = " + userId;
 
-        try (Connection conn = DbUtil.getConnection();
-             PreparedStatement preStmt = conn.prepareStatement(SELECT_USER_BY_ID_QUERY)) {
+        try (Connection conn = DbUtil.getConnection(); PreparedStatement preStmt = conn.prepareStatement(SELECT_USER_BY_ID_QUERY)) {
 
             User userToRead = new User();
             ResultSet resultSet = preStmt.executeQuery();
@@ -64,8 +65,66 @@ public class UserDAO {
 
     }
 
-    public void delete(int userId){
+    public void update(User user) {
+        String UPDATE_USER_QUERY = "UPDATE users SET email = ?, username = ?, password = ? WHERE id = ?;";
 
+        try (Connection conn = DbUtil.getConnection()) {
+            PreparedStatement preStmnt = conn.prepareStatement(UPDATE_USER_QUERY);
+            preStmnt.setInt(4, user.getId());
+            preStmnt.setString(1, user.getEmail());
+            preStmnt.setString(2, user.getUserName());
+            preStmnt.setString(3, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+
+            preStmnt.executeUpdate();
+
+            System.out.println("Update -complete");
+        } catch (SQLException ex) {
+            System.out.println("Problem with updating data");
+            ex.printStackTrace();
+        }
+    }
+
+    public void delete(int userId) {
+        String DELETE_USER_QUERY = "DELETE FROM users WHERE id = ?";
+
+        try (Connection conn = DbUtil.getConnection()) {
+            PreparedStatement preStmt = conn.prepareStatement(DELETE_USER_QUERY);
+            preStmt.setInt(1, userId);
+
+            preStmt.executeUpdate();
+            System.out.println("User has been deleted");
+        } catch (SQLException ex) {
+            System.out.println("Problem with deleteing User");
+            ex.printStackTrace();
+        }
+    }
+
+    public List<User> findAll() {
+        String SELECT_ALL_USERS = "SELECT * FROM users;";
+        List<User> allUsers = new ArrayList<>();
+
+
+        try (Connection conn = DbUtil.getConnection()) {
+            PreparedStatement preStmt = conn.prepareStatement(SELECT_ALL_USERS);
+            ResultSet rs = preStmt.executeQuery();
+
+            while (rs.next()) {
+                User readUser = new User();
+                readUser.setId(rs.getInt("id"));
+                readUser.setEmail(rs.getString("email"));
+                readUser.setUserName(rs.getString("username"));
+                readUser.setUserName(rs.getString("password"));
+
+                allUsers.add(readUser);
+            }
+
+            return allUsers;
+        } catch (SQLException ex) {
+            System.out.println("Problems loading data");
+            ex.printStackTrace();
+        }
+
+        return null;
     }
 
 

@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45c2d965-b2eb-44ae-a503-d5e2a4435982" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/database/connection/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/connection/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/test.java" afterDir="false" />
@@ -56,6 +57,11 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="database.connection" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.test">
     <configuration name="TaskManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="entity.TaskManager" />
@@ -102,7 +108,9 @@
       <workItem from="1705775523231" duration="51000" />
       <workItem from="1705861536972" duration="3631000" />
       <workItem from="1705935221045" duration="172000" />
-      <workItem from="1705945189585" duration="2913000" />
+      <workItem from="1705945189585" duration="5277000" />
+      <workItem from="1706027489069" duration="103000" />
+      <workItem from="1706033348676" duration="4049000" />
     </task>
     <servers />
   </component>
