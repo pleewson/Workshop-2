@@ -8,25 +8,22 @@ import entity.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class UserDAO {
-
-    //CRUD
-
-    //close PreparedStatement, ResultSet?
-
     public User createUser(User user) {
         final String CREATE_USER_QUERY = "INSERT INTO users (email, userName, password) VALUES (?, ?, ?);";
 
-        try (Connection conn = DbUtil.getConnection()) {
-            PreparedStatement preStmt = conn.prepareStatement(CREATE_USER_QUERY, Statement.RETURN_GENERATED_KEYS);
+        try (Connection conn = DbUtil.getConnection();
+             PreparedStatement preStmt = conn.prepareStatement(CREATE_USER_QUERY, Statement.RETURN_GENERATED_KEYS)) {
             preStmt.setString(1, user.getEmail());
             preStmt.setString(2, user.getUserName());
             preStmt.setString(3, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
             preStmt.executeUpdate();
 
-            ResultSet rs = preStmt.getGeneratedKeys();
-            if (rs.next()) {
-                user.setId(rs.getInt(1));
+            try (ResultSet rs = preStmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    user.setId(rs.getInt(1));
+                }
             }
+
             System.out.println("New User has been created!");
             return user;
         } catch (SQLException ex) {
@@ -41,10 +38,11 @@ public class UserDAO {
     public User read(int userId) {
         final String SELECT_USER_BY_ID_QUERY = "SELECT * FROM users WHERE id = " + userId;
 
-        try (Connection conn = DbUtil.getConnection(); PreparedStatement preStmt = conn.prepareStatement(SELECT_USER_BY_ID_QUERY)) {
+        try (Connection conn = DbUtil.getConnection();
+             PreparedStatement preStmt = conn.prepareStatement(SELECT_USER_BY_ID_QUERY);
+             ResultSet resultSet = preStmt.executeQuery()) {
 
             User userToRead = new User();
-            ResultSet resultSet = preStmt.executeQuery();
 
             if (resultSet.next()) {
                 userToRead.setId(resultSet.getInt("id"));
@@ -55,7 +53,7 @@ public class UserDAO {
                 System.out.println("Loading data -possitive");
                 return userToRead;
             } else {
-                System.out.println("No user found with ID " + userId);
+                System.out.println("User with ID " + userId + " not found");
                 return null;
             }
         } catch (SQLException ex) {
@@ -68,8 +66,9 @@ public class UserDAO {
     public void update(User user) {
         String UPDATE_USER_QUERY = "UPDATE users SET email = ?, username = ?, password = ? WHERE id = ?;";
 
-        try (Connection conn = DbUtil.getConnection()) {
-            PreparedStatement preStmnt = conn.prepareStatement(UPDATE_USER_QUERY);
+        try (Connection conn = DbUtil.getConnection();
+             PreparedStatement preStmnt = conn.prepareStatement(UPDATE_USER_QUERY)) {
+
             preStmnt.setInt(4, user.getId());
             preStmnt.setString(1, user.getEmail());
             preStmnt.setString(2, user.getUserName());
@@ -87,8 +86,9 @@ public class UserDAO {
     public void delete(int userId) {
         String DELETE_USER_QUERY = "DELETE FROM users WHERE id = ?";
 
-        try (Connection conn = DbUtil.getConnection()) {
-            PreparedStatement preStmt = conn.prepareStatement(DELETE_USER_QUERY);
+        try (Connection conn = DbUtil.getConnection();
+             PreparedStatement preStmt = conn.prepareStatement(DELETE_USER_QUERY)) {
+
             preStmt.setInt(1, userId);
 
             preStmt.executeUpdate();
@@ -113,14 +113,14 @@ public class UserDAO {
                 readUser.setId(rs.getInt("id"));
                 readUser.setEmail(rs.getString("email"));
                 readUser.setUserName(rs.getString("username"));
-                readUser.setUserName(rs.getString("password"));
+                readUser.setPassword(rs.getString("password"));
 
                 allUsers.add(readUser);
             }
 
             return allUsers;
         } catch (SQLException ex) {
-            System.out.println("Problems loading data");
+            System.out.println("Problems with loading data");
             ex.printStackTrace();
         }
 
