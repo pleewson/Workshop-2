@@ -6,6 +6,10 @@ public class User {
     private String email;
     private String password;
 
+    public String toString() {
+        return "User id: " + id + " userName: " + userName + " email: " + email;
+    }
+
     public int getId() {
         return id;
     }
